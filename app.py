@@ -77,6 +77,7 @@ def search():
 
 # Insert only one JSON ( OK )
 @app.route("/material/insert_one", methods=['POST'])
+@jwt_required()
 def insert_one():
     material = materials.find_one(request.json, {"_id": 0})
     if material is not None:
@@ -89,6 +90,7 @@ def insert_one():
 
 
 @app.route("/material/insert", methods=['POST'])
+@jwt_required()
 def insert_many():
     already_exists = []
     insert = []
