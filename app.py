@@ -87,10 +87,17 @@ def update(name):
 @app.route("/material/delete_one/<name>", methods=["POST"])
 @jwt_required()
 def delete_one(name):
-    materials.delete_one({"name": name})
-    return jsonify({
-        "message": "Material deleted",
-    })
+    material = materials.find_one({"name": name}, {"_id": 0})
+    if material is None:
+        return jsonify({
+            "message": "No material found for delete",
+        })
+    else:
+        materials.delete_one({"name": name})
+        return jsonify({
+            "message": "Material deleted",
+            "material": material
+        })
 
 
 # Delete all materials
@@ -98,7 +105,9 @@ def delete_one(name):
 @jwt_required()
 def delete_all():
     x = materials.delete_many({})
-    return x.deleted_count, "materials deleted"
+    return jsonify({
+        "message": "All Material deleted",
+    })
 
 
 # --------------------- TOKEN -------------------
@@ -106,5 +115,3 @@ def delete_all():
 def token():
     ret = create_token(users, request.json)
     return ret
-
-
