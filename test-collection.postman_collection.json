@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "79722dab-a851-46dc-bab7-176eacced875",
+		"name": "test-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "127.000.1:5000/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\":\"constella\",\n    \"password\":\"123456\"\n}"
+				},
+				"url": {
+					"raw": "127.000.1:5000/login",
+					"host": [
+						"127",
+						"000",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.000.1:5000/material/search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"car\"\n}"
+				},
+				"url": {
+					"raw": "127.000.1:5000/material/search",
+					"host": [
+						"127",
+						"000",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"material",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.000.1:5000/material/delete_all",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.000.1:5000/material/delete_all",
+					"host": [
+						"127",
+						"000",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"material",
+						"delete_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.000.1:5000/material/delete_one/car",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.000.1:5000/material/delete_one/car",
+					"host": [
+						"127",
+						"000",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"material",
+						"delete_one",
+						"car"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.000.1:5000/material/update/car",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"car\",\n    \"wheels\":20,\n    \"cv\":140\n}"
+				},
+				"url": {
+					"raw": "127.000.1:5000/material/update/car",
+					"host": [
+						"127",
+						"000",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"material",
+						"update",
+						"car"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.000.1:5000/material/insert_one",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"lamp\",\n    \"colour\":\"red\",\n    \"size\":\"big\",\n    \"wats\":\"300\"\n}"
+				},
+				"url": {
+					"raw": "127.000.1:5000/material/insert_one",
+					"host": [
+						"127",
+						"000",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"material",
+						"insert_one"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.000.1:5000/material/get_one/car",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.000.1:5000/material/get_one/car",
+					"host": [
+						"127",
+						"000",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"material",
+						"get_one",
+						"car"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.000.1:5000/material/get_all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.000.1:5000/material/get_all",
+					"host": [
+						"127",
+						"000",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"material",
+						"get_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.000.1:5000/material/insert",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"Materials\":[{\n    \"name\":\"bike\",\n    \"colour\":\"red\",\n    \"wheels\":2\n},\n{\n    \"name\":\"wire\",\n    \"lenght\":30\n},\n{\n    \"name\":\"laptop\",\n    \"colour\":\"silver\",\n    \"voltage\":\"240\"\n}]\n}"
+				},
+				"url": {
+					"raw": "127.000.1:5000/material/insert",
+					"host": [
+						"127",
+						"000",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"material",
+						"insert"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
