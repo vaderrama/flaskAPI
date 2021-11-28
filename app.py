@@ -65,10 +65,15 @@ def search():
 
 # Insert only one JSON ( OK )
 @app.route("/material/insert_one", methods=['POST'])
-@jwt_required()
 def insert_one():
-    materials.insert_one(request.json)
-    return jsonify({"message": "success"})
+    material = materials.find_one(request.json, {"_id": 0})
+    if material is not None:
+        return jsonify({
+            "message": "Material already exists",
+        })
+    else:
+        materials.insert_one(request.json)
+        return jsonify({"message": "Insert success", "material": json.loads((json_util.dumps(request.json)))})
 
 
 # ---------------------- UPDATE ------------------------
