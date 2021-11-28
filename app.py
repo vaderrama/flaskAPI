@@ -71,14 +71,22 @@ def insert_one():
     return jsonify({"message": "success"})
 
 
-# Update materials for "name" attribute ( OK )
+# ---------------------- UPDATE ------------------------
+# Update materials for "name" attribute with JSON data
 @app.route("/material/update/<name>", methods=["PUT"])
 @jwt_required()
 def update(name):
-    materials.update_one({"name": name}, {"$set": request.json})
-    return jsonify({
-        "message": "Material Updated",
-    })
+    material = materials.find_one({"name": name}, {"_id": 0})
+    if material is None:
+        return jsonify({
+            "message": "No material found for update",
+        })
+    else:
+        materials.update_one({"name": name}, {"$set": request.json})
+        return jsonify({
+            "message": "Material Updated",
+            "material": material
+        })
 
 
 # ---------------- DELETE -------------------
