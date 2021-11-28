@@ -1,0 +1,8 @@
+dnspython==2.1.0
+elasticsearch==7.15.2
+Flask==2.0.2
+Flask-PyMongo==2.3.0
+PyJWT==1.4.2
+pymongo==3.12.1
+flask-jwt-extended
+djangorestframework~=3.12.4

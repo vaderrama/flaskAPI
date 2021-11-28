@@ -1,0 +1,110 @@
+import json
+from datetime import datetime
+import flask
+from flask import Flask, jsonify
+from flask import request
+from elasticsearch import Elasticsearch
+from flask_jwt_extended import JWTManager, jwt_required
+from flask_pymongo import PyMongo
+from bson import json_util
+from JWT import *
+from JSONEncoder import JSONEncoder
+
+# es = Elasticsearch()
+
+app = Flask(__name__)
+
+app.config[
+    'MONGO_URI'] = 'mongodb+srv://vaderrama:vaderrama11@cluster0.lxc64.mongodb.net/Material?retryWrites=true&w=majority'
+
+app.config["JWT_SECRET_KEY"] = "material-key"
+
+jwt = JWTManager(app)
+mongo = PyMongo(app)
+
+materials = mongo.db.Materials
+users = mongo.db.Users
+materials.create_index([("name", 1)])
+
+
+# ---------------- GET -------------------
+
+# Print all the objects on collection Materials ( OK )
+@app.route('/material/get_all', methods=['GET'])
+@jwt_required()
+def get_all():
+    items = materials.find({}, {'_id': 0})
+    return jsonify(list(items))
+
+
+# Print one object for "name" attribute
+@app.route('/material/get_one/<name>', methods=['GET'])
+@jwt_required()
+def get_one(name):
+    material = materials.find_one({'name': name})
+    # Error TypeError: ObjectId('') is not JSON serializable solved
+    return json.loads((json_util.dumps(material)))
+
+
+# Search by json attributes
+@app.route('/material/search', methods=['POST'])
+@jwt_required()
+def search():
+    array = []
+    material = materials.find(request.json, {"_id": 0})
+
+    if material.count() == 0:
+        return jsonify({"message": "No material found"})
+    else:
+        for x in material:
+            array.append(x)
+        return json.dumps(array)
+
+
+# ---------------- INSERT -------------------
+
+# Insert only one JSON ( OK )
+@app.route("/material/insert_one", methods=['POST'])
+@jwt_required()
+def insert_one():
+    materials.insert_one(request.json)
+    return jsonify({"message": "success"})
+
+
+# Update materials for "name" attribute ( OK )
+@app.route("/material/update/<name>", methods=["PUT"])
+@jwt_required()
+def update(name):
+    materials.update_one({"name": name}, {"$set": request.json})
+    return jsonify({
+        "message": "Material Updated",
+    })
+
+
+# ---------------- DELETE -------------------
+
+# Delete material for "name" attribute ( OK )
+@app.route("/material/delete_one/<name>", methods=["POST"])
+@jwt_required()
+def delete_one(name):
+    materials.delete_one({"name": name})
+    return jsonify({
+        "message": "Material deleted",
+    })
+
+
+# Delete all materials
+@app.route("/material/delete_all", methods=["POST"])
+@jwt_required()
+def delete_all():
+    x = materials.delete_many({})
+    return x.deleted_count, "materials deleted"
+
+
+# --------------------- TOKEN -------------------
+@app.route("/login", methods=["POST"])
+def token():
+    ret = create_token(users, request.json)
+    return ret
+
+
