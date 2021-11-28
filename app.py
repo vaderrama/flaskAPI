@@ -1,5 +1,7 @@
 import json
 from datetime import datetime
+
+import bson
 import flask
 from flask import Flask, jsonify
 from flask import request
@@ -84,6 +86,23 @@ def insert_one():
     else:
         materials.insert_one(request.json)
         return jsonify({"message": "Insert success", "material": json.loads((json_util.dumps(request.json)))})
+
+
+@app.route("/material/insert", methods=['POST'])
+def insert_many():
+    already_exists = []
+    insert = []
+    inserts = request.json
+    for x in inserts["Materials"]:
+        material = materials.find(x)
+        if material.count() > 0:
+            already_exists.append(x)
+        else:
+            materials.insert_one(x)
+            insert.append(x)
+
+    return jsonify({"material inserts success": json.loads((json_util.dumps(insert))),
+                    "material not insert": json.loads((json_util.dumps(already_exists)))})
 
 
 # ---------------------- UPDATE ------------------------
