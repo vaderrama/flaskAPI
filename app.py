@@ -34,7 +34,12 @@ materials.create_index([("name", 1)])
 @jwt_required()
 def get_all():
     items = materials.find({}, {'_id': 0})
-    return jsonify(list(items))
+    if items.count() > 0:
+        return jsonify(list(items))
+    else:
+        return jsonify({
+            "message": "Materials not found",
+        })
 
 
 # Print one object for "name" attribute
@@ -42,8 +47,13 @@ def get_all():
 @jwt_required()
 def get_one(name):
     material = materials.find_one({'name': name})
-    # Error TypeError: ObjectId('') is not JSON serializable solved
-    return json.loads((json_util.dumps(material)))
+    if material is None:
+        return jsonify({
+            "message": "Material not found",
+        })
+    else:
+        # Error TypeError: ObjectId('') is not JSON serializable solved
+        return json.loads((json_util.dumps(material)))
 
 
 # Search by json attributes
