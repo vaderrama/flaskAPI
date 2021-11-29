@@ -4,3 +4,4 @@ PyJWT
 pymongo
 flask-jwt-extended
 dnspython
+gunicorn
