@@ -1,6 +1,7 @@
-flask
+Flask
 Flask-PyMongo
 PyJWT
 pymongo
 flask-jwt-extended
 dnspython
+cryptography
