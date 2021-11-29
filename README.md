@@ -13,8 +13,11 @@
 
 
 
-## Install + Run
+## Install + Run ( Linux )
 ---
+
+
+
 To install it + run it : 
 
 `./run.sh`
@@ -37,7 +40,7 @@ We can access from [127.000.1:5000]()
 
 Enjoy ! 
 
-####In some operating systems it will be necessary in case of error in the JWT libraries, add the following command : `pip3 install cryptography`
+#### In some operating systems it will be necessary in case of error in the JWT libraries, add the following command : `pip3 install cryptography`
 ## Description and context
 ---
 Rest API that returns different data in JSON of the inventory of Materials of a company
@@ -89,13 +92,6 @@ To include it in the requests, we add a field "Authorization" in Postman and in 
 ## Testing with Postman 
 ---
 
-In this repository `test-collection.postman_collection` file is included where the different urls already created come to make the requests and check their correct operation 
+In this repository `test-collection.postman_collection` file is included where the different urls already created come to make the requests and check their correct operation, only need to change the token in headers 
 
 
-
-## Upgrades
----
-
-- ElasticSearch functionally  
-- GCP + heroku deploy 
-- Docker + Kubernetes
