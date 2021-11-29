@@ -1,18 +1,13 @@
 import json
-from datetime import datetime
-
 import bson
 import flask
 from flask import Flask, jsonify
 from flask import request
-from elasticsearch import Elasticsearch
 from flask_jwt_extended import JWTManager, jwt_required
 from flask_pymongo import PyMongo
 from bson import json_util
 from JWT import *
-from JSONEncoder import JSONEncoder
 
-# es = Elasticsearch()
 
 app = Flask(__name__)
 
