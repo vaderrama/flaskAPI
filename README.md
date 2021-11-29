@@ -15,7 +15,12 @@
 
 ## Install + Run
 ---
-To install it :
+To install it + run it : 
+
+`./run.sh`
+
+or use : 
+
 - sudo apt get update
 - sudo apt install python3-pip
 - sudo apt install python3-flask
@@ -32,6 +37,7 @@ We can access from [127.000.1:5000]()
 
 Enjoy ! 
 
+####In some operating systems it will be necessary in case of error in the JWT libraries, add the following command : `pip3 install cryptography`
 ## Description and context
 ---
 Rest API that returns different data in JSON of the inventory of Materials of a company
