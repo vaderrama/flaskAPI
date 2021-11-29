@@ -3,16 +3,15 @@
 ## Index:
 ---
 
-- [Install + Run](#-install--run)
-- [Description](#-description-and-context)
+- [Install + Run](#install)
+- [Description](#descrip)
 - [Functions](#functions)
-- [Urls ](#-urls)
-- [Login with Token](#-login-with-token)
-- [Testing with Postman](#-testing-with-postman)
-- [Upgrades]()
+- [Urls ](#urls)
+- [Login with Token](#login)
+- [Testing with Postman](#test)
 
 
-
+<a name="install"></a>
 ## Install + Run ( Linux )
 ---
 
@@ -41,11 +40,13 @@ We can access from [127.000.1:5000]()
 Enjoy ! 
 
 #### In some operating systems it will be necessary in case of error in the JWT libraries, add the following command : `pip3 install cryptography`
+
+<a name="descrip"></a>
 ## Description and context
 ---
 Rest API that returns different data in JSON of the inventory of Materials of a company
 
-
+<a name="functions"></a>
 ## Functions
 - **Insert one ( receive a "name" params )** -> Insert a material in the database
 
@@ -58,6 +59,7 @@ Rest API that returns different data in JSON of the inventory of Materials of a 
 - **Delete All ()** -> Delete all materials from a database
 - **Login ( receive a JSON param with credentials - user - password )** -> Generates the login token obtained through the verification of a username and password sent by JSON
 
+<a name="urls"></a>
 ## Urls
 ---
 Different accessible urls of our rest API : 
@@ -72,6 +74,7 @@ Different accessible urls of our rest API :
 - 127.000.1:5000/material/get_all
 - 127.000.1:5000/material/insert
 
+<a name="login"></a>
 ## Login with Token
 ---
 
@@ -89,6 +92,8 @@ This token has an expiration time, so you must login again after a while.
 To include it in the requests, we add a field "Authorization" in Postman and in value = "Bearer <JWTtoken>", being this way:
 
     Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYzODE5Mjg0MywianRpIjoiNmZmMTg3NTItZWUxYi00ZGMwLThhMWMtNmY5ODQ5ZWMyNzcyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImNvbnN0ZWxsYSIsIm5iZiI6MTYzODE5Mjg0MywiZXhwIjoxNjM4MTkzNzQzfQ.jSbVzwq914wUspEV7FSHRrBJjbakxWWmZbyRgJHZqUw
+
+<a name="test"></a>
 ## Testing with Postman 
 ---
 
